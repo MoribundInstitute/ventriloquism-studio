@@ -1,0 +1,43 @@
+app-id: org.moribundinstitute.VentriloquismStudio
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+  - org.freedesktop.Sdk.Extension.node20
+command: ventriloquism-studio
+separate-localedata: false
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --device=dri
+  - --share=network
+  - --filesystem=xdg-run/pipewire-0:ro
+  - --filesystem=home:rw # Necessary for loading images/audio and exporting video
+
+modules:
+  - name: ffmpeg-extension
+    buildsystem: simple
+    build-commands:
+      - |
+        # This pulls in the FFmpeg shared libraries your Rust code depends on
+    modules:
+      - org.freedesktop.Platform.Extension.ffmpeg-full
+
+  - name: ventriloquism-studio
+    buildsystem: simple
+    build-options:
+      append-path: /usr/lib/sdk/node20/bin:/usr/lib/sdk/rust-stable/bin
+      env:
+        CARGO_HOME: /run/build/ventriloquism-studio/cargo
+    sources:
+      - type: dir
+        path: .
+    build-commands:
+      - npm install
+      - npm run tauri build -- --bundles deb
+      # Note: We move the final binary to the Flatpak /app/bin folder
+      - install -D src-tauri/target/release/ventriloquism-studio /app/bin/ventriloquism-studio
+      - install -D deploy/org.moribundinstitute.VentriloquismStudio.desktop /app/share/applications/org.moribundinstitute.VentriloquismStudio.desktop
+      - install -D src-tauri/icons/128x128.png /app/share/icons/hicolor/128x128/apps/org.moribundinstitute.VentriloquismStudio.png

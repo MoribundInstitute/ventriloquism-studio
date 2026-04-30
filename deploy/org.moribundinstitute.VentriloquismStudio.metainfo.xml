@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.moribundinstitute.VentriloquismStudio</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Ventriloquism Studio</name>
+  <summary>High-performance audio-synced puppetry for digital performances</summary>
+
+  <description>
+    <p>
+      Ventriloquism Studio is a specialized puppet engine designed to animate 
+      static imagery in precise synchronization with vocal recordings. 
+      Utilizing Rust-driven digital signal processing, the tool provides 
+      exact masking and jaw-drop physics for neologistic performances 
+      and archival animation.
+    </p>
+    <p>
+      Developed as a core utility for the Moribund Institute, the application 
+      focuses on modularity and speed, allowing for the rapid generation of 
+      puppet-style video content for integration into modern nonlinear 
+      video editors.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">org.moribundinstitute.VentriloquismStudio.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <caption>The main studio interface with puppet physics controls.</caption>
+      <image>https://raw.githubusercontent.com/MoribundInstitute/ventriloquism-studio/main/src/assets/screenshot-main.png</image>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://github.com/MoribundInstitute/ventriloquism-studio</url>
+  <developer_name>Moribund Institute</developer_name>
+  <content_rating type="oars-1.1" />
+</component>
