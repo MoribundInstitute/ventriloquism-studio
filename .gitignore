@@ -1,0 +1,11 @@
+# Node dependencies
+node_modules/
+
+# Rust build artifacts (the source of the 6.9 GB bloat)
+src-tauri/target/
+
+# Local environment and OS junk
+.env
+.DS_Store
+dist/
+bin/
