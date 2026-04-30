@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ventriloquism</title>
+    <script type="module" src="/main.js" defer></script>
+  </head>
+
+  <body>
+    <div class="app-container">
+      <aside class="sidebar frosted-glass">
+        <h2>🎭 Ventriloquism</h2>
+
+        <div class="section">
+          <h3>Files</h3>
+          <button id="btn-load-image" class="btn primary">📷 Load Image</button>
+          <button id="btn-load-audio" class="btn primary">🎵 Load Audio</button>
+        </div>
+
+        <div class="section">
+          <h3>Puppet Physics</h3>
+          <div class="control-group">
+            <label>Animation Amount <span id="val-anim">0.50</span></label>
+            <input type="range" id="slider-anim" min="0.05" max="1.5" step="0.01" value="0.50">
+          </div>
+          <div class="control-group">
+            <label>Jaw Drop <span id="val-drop">0.40</span></label>
+            <input type="range" id="slider-drop" min="0.1" max="1.0" step="0.01" value="0.40">
+          </div>
+          <div class="control-group">
+            <label>Response Curve <span id="val-power">2.00</span></label>
+            <input type="range" id="slider-power" min="0.5" max="3.0" step="0.01" value="2.00">
+          </div>
+          <div class="control-group">
+            <label>Silence Gate <span id="val-gate">0.08</span></label>
+            <input type="range" id="slider-gate" min="0.0" max="0.3" step="0.01" value="0.08">
+          </div>
+        </div>
+
+        <button id="btn-export" class="btn action">🎬 Export Video</button>
+
+        <div id="progress-wrap">
+          <div id="progress-bar"></div>
+          <span id="progress-label">0%</span>
+        </div>
+
+        <div class="section help-box">
+          <h3>Quick Help</h3>
+          <ul>
+            <li><strong>Mask:</strong> Trace ONLY the jaw/chin.</li>
+            <li><strong>Hinge:</strong> The top line you draw is the hinge.</li>
+            <li><strong>Gate:</strong> Prevents vibration in quiet rooms.</li>
+            <li><strong>Response:</strong> High values = snappy "pop" opening.</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="canvas-container">
+          <p class="canvas-instructions">← Load an image, then trace ONLY the piece that will drop (e.g. the chin).</p>
+          <p class="placeholder-text">Drag & Drop Image Here</p>
+          <canvas id="viewport"></canvas>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
