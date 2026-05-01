@@ -1,7 +1,7 @@
 # 🎭 Ventriloquism Studio
 ### A Moribund Institute Project
 
-**Ventriloquism Studio** is a simple but powerful tool that turns a still photo into a talking puppet. By using sound recordings, the app automatically makes the puppet's mouth move in sync with the voice. It was built for the **Moribund Institute** to help nerds make goofy educational Monty-Python-esque videos.
+**Ventriloquism Studio** is a simple but powerful tool that turns a still photo into a talking puppet. By using sound recordings, the app automatically makes the puppet's mouth move in sync with the voice. It was built for the **Moribund Institute** to help creators make educational videos with a touch of Monty Python-esque absurdity.
 
 ![Ventriloquism Studio Interface](src/assets/screenshot-main.png)
 
@@ -11,54 +11,54 @@
 Imagine you have a photo of a historical figure or a character. Usually, making that photo "talk" would take hours of manual work. This app does the heavy lifting for you:
 * **Automatic Lip-Sync:** It listens to the audio and moves the puppet's mouth for you.
 * **Puppet Physics:** The movements are smooth and feel like a real puppet.
-* **Signature Look:** The app is designed with a high-contrast, "Old World" scholarly look, featuring our trademark **Purple Ink** accents.
+* **Privacy by Design:** This is a **100% offline** app. Your photos and voice recordings never leave your machine (making it ideal for secure research environments).
 
 ---
 
 ## 🛠️ How It Works (The "Engine")
 We used two special technologies to make this app work on any computer:
 
-1. **Tauri (The Bridge):** Think of this as a bridge. It allows us to build the "face" of the app using the same tools people use to build websites, while the "brain" of the app uses a super-fast language called **Rust** to handle the sound and movement.
-2. **Flatpak (The Lunchbox):** To make sure the app works on any Linux computer, we package it like a lunchbox. It contains all the "ingredients" (code and tools) the app needs to run, so you don't have to worry about missing parts on your system.
+1. **Tauri (The Bridge):** This acts as a bridge, allowing us to build the "face" of the app using web tools (HTML/JS) while the "brain" of the app uses **Rust** to handle the heavy math of audio and movement.
+2. **Multi-Distro Support:** Instead of a single "lunchbox" format, we provide native packages for Ubuntu (.deb), Fedora (.rpm), and a universal AppImage for Arch and other Linux users.
 
 ---
 
-## 🚀 Getting Started
-If you want to run this project on your own computer, follow these simple steps.
+## 🚀 Installation & Downloads
+The easiest way to use the Studio is to download a pre-built version from our **Releases** page.
+
+### 📥 Available Formats
+* **Ubuntu / Debian (.deb):** The leanest version (about 5MB) for Debian-based systems.
+* **Arch / Universal (.AppImage):** A "download and run" portable version that works on almost any Linux distro.
+* **Fedora / Red Hat (.rpm):** For enterprise and Red Hat-based workstations.
+
+### 🔒 Security Check
+Every release includes **SHA-256 checksums**. We recommend verifying your download in the terminal to ensure you have the authentic Moribund Institute build.
+
+---
+
+## 🖥️ Getting Started (For Developers)
+If you want to build the project from source or help us improve the puppet physics, follow these steps.
 
 ### 1. Grab the Code
-Open your terminal and type:
 ```bash
-git clone https://github.com/MoribundInstitute/ventriloquism-studio.git
+git clone [https://github.com/MoribundInstitute/ventriloquism-studio.git](https://github.com/MoribundInstitute/ventriloquism-studio.git)
 cd ventriloquism-studio
-```
+2. Install Dependencies
+You will need Node.js and Rust installed on your system.
 
-### 2. Install the "Ingredients"
-You will need a tool called **npm** (a package manager) installed. Once you have it, run:
-```bash
+Bash
 npm install
-```
+3. Run the App
+To start the app in "Live Mode" for development:
 
-### 3. Run the App
-To start the app in "Live Mode" so you can see your changes instantly, run:
-```bash
+Bash
 npm run tauri dev
-```
+📜 The Institute's Rules
+To keep our documentation looking professional and scholarly, please follow these guidelines:
 
----
+No Em Dashes: We do not use the long dash. Please use colons, commas, or parentheses for asides.
 
-## 🖥️ Recommended Setup for Builders
-If you are a developer looking to help us improve the puppet engine, we recommend using these tools:
+Branding: Keep all colors strictly to our high-contrast monochrome and Purple Ink palette.
 
-* **VS Code:** The best text editor for this project.
-* **Tauri Extension:** Helps you see how the app is performing.
-* **Rust-analyzer:** A "spellchecker" for the backend code.
-
----
-
-## ⚖️ License
-This project is open-source and free to use under the **MIT License**.
-
-[How to use Tauri for Desktop Apps](https://www.youtube.com/watch?v=Aatf7pXN7kU)
-
-This video is a great primer for beginners who want to understand how Tauri bridges web tools with desktop power, making it perfect for anyone looking to understand the "engine" behind Ventriloquism Studio.
+⚖️ License
+This project is open-source and free to use under the MIT License.
