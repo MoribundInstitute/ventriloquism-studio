@@ -41,24 +41,27 @@ If you want to build the project from source or help us improve the puppet physi
 
 ### 1. Grab the Code
 ```bash
-git clone [https://github.com/MoribundInstitute/ventriloquism-studio.git](https://github.com/MoribundInstitute/ventriloquism-studio.git)
+git clone https://github.com/MoribundInstitute/ventriloquism-studio.git
 cd ventriloquism-studio
-2. Install Dependencies
+```
+
+### 2. Install Dependencies
 You will need Node.js and Rust installed on your system.
-
-Bash
+```bash
 npm install
-3. Run the App
+```
+
+### 3. Run the App
 To start the app in "Live Mode" for development:
-
-Bash
+```bash
 npm run tauri dev
-📜 The Institute's Rules
-To keep our documentation looking professional and scholarly, please follow these guidelines:
+```
 
-No Em Dashes: We do not use the long dash. Please use colons, commas, or parentheses for asides.
+## 📜 The Institute's Rules
+To keep our documentation looking professional and scholarly, please follow these guidelines.
 
-Branding: Keep all colors strictly to our high-contrast monochrome and Purple Ink palette.
+- **No Em Dashes:** We do not use the long dash. Please use colons, commas, or parentheses for asides.
+- **Branding:** Keep all colors strictly to our high-contrast monochrome and Purple Ink palette.
 
-⚖️ License
+## ⚖️ License
 This project is open-source and free to use under the MIT License.
