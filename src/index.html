@@ -4,64 +4,150 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ventriloquism</title>
+    <title>Ventriloquism Studio</title>
     <script type="module" src="/main.js" defer></script>
   </head>
 
   <body>
+    <header class="toolbar">
+      <img class="emblem" src="assets/logo.png" alt="" aria-hidden="true" />
+      <div class="toolbar-text">
+        <h1 class="toolbar-title">Ventriloquism Studio</h1>
+        <span class="toolbar-sub">Audio-synced talking puppets · drag &amp; drop supported</span>
+      </div>
+      <button id="btn-theme" class="btn icon-btn" title="Switch theme" aria-label="Switch theme">☀</button>
+    </header>
+
     <div class="app-container">
-      <aside class="sidebar frosted-glass">
-        <h2>🎭 Ventriloquism</h2>
+      <aside class="sidebar">
+        <div class="section">
+          <div class="section-header">Files</div>
+          <div class="section-body">
+            <button id="btn-load-image" class="btn accent">Load Image</button>
+            <p id="img-label" class="file-label">No image loaded</p>
+            <button id="btn-load-audio" class="btn accent">Load Audio</button>
+            <p id="aud-label" class="file-label">No audio loaded</p>
+          </div>
+        </div>
 
         <div class="section">
-          <h3>Files</h3>
-          <button id="btn-load-image" class="btn primary">📷 Load Image</button>
-          <button id="btn-load-audio" class="btn primary">🎵 Load Audio</button>
+          <div class="section-header">Mouth Mask</div>
+          <div class="section-body">
+            <p class="hint">Draw ONLY the piece that drops (the lower jaw). The top edge is the hinge.</p>
+            <div class="btn-row">
+              <button id="btn-close-mask" class="btn">Close</button>
+              <button id="btn-undo-mask" class="btn">Undo</button>
+              <button id="btn-clear-mask" class="btn danger">Clear</button>
+            </div>
+            <p id="mask-label" class="file-label italic">No points placed</p>
+          </div>
         </div>
 
         <div class="section">
-          <h3>Puppet Physics</h3>
-          <div class="control-group">
-            <label>Animation Amount <span id="val-anim">0.50</span></label>
-            <input type="range" id="slider-anim" min="0.05" max="1.5" step="0.01" value="0.50">
-          </div>
-          <div class="control-group">
-            <label>Jaw Drop <span id="val-drop">0.40</span></label>
-            <input type="range" id="slider-drop" min="0.1" max="1.0" step="0.01" value="0.40">
-          </div>
-          <div class="control-group">
-            <label>Response Curve <span id="val-power">2.00</span></label>
-            <input type="range" id="slider-power" min="0.5" max="3.0" step="0.01" value="2.00">
-          </div>
-          <div class="control-group">
-            <label>Silence Gate <span id="val-gate">0.08</span></label>
-            <input type="range" id="slider-gate" min="0.0" max="0.3" step="0.01" value="0.08">
+          <div class="section-header">Puppet Physics</div>
+          <div class="section-body">
+            <div class="control-group">
+              <label>Animation Amount <span id="val-anim">0.85</span></label>
+              <input type="range" id="slider-anim" min="0.01" max="3.0" step="0.01" value="0.85">
+            </div>
+            <div class="control-group">
+              <label>Audio Sensitivity <span id="val-sensitivity">1.75x</span></label>
+              <input type="range" id="slider-sensitivity" min="0.25" max="8.0" step="0.01" value="1.75">
+            </div>
+            <div class="control-group">
+              <label>Jaw Drop <span id="val-drop">0.55</span></label>
+              <input type="range" id="slider-drop" min="0.05" max="1.5" step="0.01" value="0.55">
+            </div>
+
+            <p class="subheading">Dynamics</p>
+            <div class="control-group">
+              <label>Response (Snappiness) <span id="val-power">1.10</span></label>
+              <input type="range" id="slider-power" min="0.25" max="4.0" step="0.01" value="1.10">
+            </div>
+            <div class="control-group">
+              <label>Silence Gate <span id="val-gate">0.015</span></label>
+              <input type="range" id="slider-gate" min="0.0" max="0.5" step="0.001" value="0.015">
+            </div>
+            <div class="control-group">
+              <label>Smoothing <span id="val-smooth">0.12</span></label>
+              <input type="range" id="slider-smooth" min="0.0" max="2.0" step="0.01" value="0.12">
+            </div>
+
+            <p class="subheading">Audio &amp; Polish</p>
+            <div class="control-group">
+              <label>Freq Low <span id="val-flo">60 Hz</span></label>
+              <input type="range" id="slider-flo" min="20" max="2000" step="1" value="60">
+            </div>
+            <div class="control-group">
+              <label>Freq High <span id="val-fhi">5000 Hz</span></label>
+              <input type="range" id="slider-fhi" min="100" max="12000" step="1" value="5000">
+            </div>
+            <div class="control-group inline">
+              <label for="input-offset">Audio Offset (frames)</label>
+              <input type="number" id="input-offset" min="0" max="999" value="0" class="num-input">
+            </div>
+            <div class="control-group inline">
+              <label for="input-color">Inner Mouth Colour</label>
+              <input type="color" id="input-color" value="#000000" class="color-input">
+            </div>
           </div>
         </div>
 
-        <button id="btn-export" class="btn action">🎬 Export Video</button>
-
-        <div id="progress-wrap">
-          <div id="progress-bar"></div>
-          <span id="progress-label">0%</span>
+        <div class="section">
+          <div class="section-header">Output</div>
+          <div class="section-body">
+            <div class="control-group inline">
+              <label for="select-fps">Frame Rate (FPS)</label>
+              <select id="select-fps" class="select-input">
+                <option value="12">12</option>
+                <option value="23">23</option>
+                <option value="24" selected>24</option>
+                <option value="25">25</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="48">48</option>
+                <option value="50">50</option>
+                <option value="60">60</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label title="Lower CRF = better quality, larger file">Export Quality (CRF) <span id="val-crf">20</span></label>
+              <input type="range" id="slider-crf" min="0" max="51" step="1" value="20">
+            </div>
+          </div>
         </div>
 
-        <div class="section help-box">
-          <h3>Quick Help</h3>
-          <ul>
-            <li><strong>Mask:</strong> Trace the mouth's centerline & down around the chin for the desired effect.</li>
-            <li><strong>Hinge:</strong> The top line you draw is the hinge.</li>
-          </ul>
+        <div class="section">
+          <div class="section-header">Actions</div>
+          <div class="section-body">
+            <button id="btn-preview" class="btn">Preview Frame</button>
+            <button id="btn-reset-zoom" class="btn">Reset Zoom</button>
+            <button id="btn-export" class="btn accent">Export Video</button>
+            <button id="btn-cancel" class="btn danger" disabled>Cancel</button>
+            <div id="progress-wrap">
+              <div id="progress-bar"></div>
+              <span id="progress-label">Ready.</span>
+            </div>
+          </div>
         </div>
       </aside>
 
       <main class="main-content">
+        <p class="canvas-instructions">
+          Load an image, then trace ONLY the piece that will drop (e.g. the chin).
+          Scroll = Zoom · Middle-drag = Pan · Double-click = Close mask
+        </p>
         <div class="canvas-container">
-          <p class="canvas-instructions">← Load an image, then trace ONLY the piece that will drop (e.g. the chin).</p>
-          <p class="placeholder-text">Drag & Drop Image Here</p>
+          <span class="corner tl" aria-hidden="true"></span>
+          <span class="corner tr" aria-hidden="true"></span>
+          <span class="corner bl" aria-hidden="true"></span>
+          <span class="corner br" aria-hidden="true"></span>
+          <p class="placeholder-text">Drag &amp; drop an image here</p>
           <canvas id="viewport"></canvas>
         </div>
       </main>
     </div>
+
+    <footer id="statusbar" class="statusbar">Ready</footer>
   </body>
 </html>
